@@ -12,11 +12,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PriceResponse {
-    private Long productId;
+public class Price {
     private Long brandId;
-    private Integer priceList;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private Integer priceOrder;
+    private Long productId;
+    private Integer priority;
     private BigDecimal price;
+    private String currency;
 }

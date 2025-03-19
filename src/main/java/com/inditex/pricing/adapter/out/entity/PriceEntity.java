@@ -1,4 +1,4 @@
-package com.inditex.pricing.adapter.entity;
+package com.inditex.pricing.adapter.out.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "Price")
 @Table(name = "PRICES")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Price {
+public class PriceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
