@@ -8,5 +8,5 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface PriceDTOMapper {
     @Mapping(source = "priceOrder", target = "priceList")
-    PriceResponse toPriceResponse(Price price);
+    PriceResponse toPriceResponse(final Price price);
 }

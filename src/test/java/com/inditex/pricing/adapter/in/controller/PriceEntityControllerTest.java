@@ -29,8 +29,8 @@ class PriceControllerTest {
 
     @Test
     void testGetPriceFound() {
-        LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
-        Price price = Price.builder()
+        final LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
+        final Price price = Price.builder()
                 .brandId(1L)
                 .productId(35455L)
                 .priceOrder(1)
@@ -44,14 +44,14 @@ class PriceControllerTest {
         when(priceUseCase.getPrice(eq(applicationDate), eq(35455L), eq(1L)))
                 .thenReturn(price);
 
-        ResponseEntity<PriceResponse> responseEntity =
+        final ResponseEntity<PriceResponse> responseEntity =
                 priceController.getPrice(applicationDate, 35455L, 1L);
 
         assertNotNull(responseEntity, "El ResponseEntity no debe ser nulo");
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode(),
                 "El status code debe ser 200 OK cuando se encuentra un precio");
 
-        PriceResponse body = responseEntity.getBody();
+        final PriceResponse body = responseEntity.getBody();
         assertNotNull(body, "El cuerpo de la respuesta no debe ser nulo");
 
         assertAll("Verificando campos de PriceResponse",
@@ -64,12 +64,12 @@ class PriceControllerTest {
 
     @Test
     void testGetPriceNotFound() {
-        LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
+        final LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
 
         when(priceUseCase.getPrice(eq(applicationDate), eq(35455L), eq(1L)))
                 .thenReturn(null);
 
-        ResponseEntity<PriceResponse> responseEntity =
+        final ResponseEntity<PriceResponse> responseEntity =
                 priceController.getPrice(applicationDate, 35455L, 1L);
 
         assertNotNull(responseEntity, "El ResponseEntity no debe ser nulo");

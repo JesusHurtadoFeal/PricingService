@@ -25,8 +25,8 @@ class PriceServiceTest {
 
     @Test
     public void testGetPriceFound() {
-        LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
-        Price expectedPrice = Price.builder()
+        final LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
+        final Price expectedPrice = Price.builder()
                 .brandId(1L)
                 .productId(35455L)
                 .priceOrder(1)
@@ -40,7 +40,7 @@ class PriceServiceTest {
         when(priceRepositoryPort.findApplicablePrices(1L, 35455L, applicationDate))
                 .thenReturn(expectedPrice);
 
-        Price result = priceService.getPrice(applicationDate, 35455L, 1L);
+        final Price result = priceService.getPrice(applicationDate, 35455L, 1L);
         assertNotNull(result, "El precio no debe ser nulo cuando se encuentra una entidad");
         assertAll("Verificando el mapeo de Price",
                 () -> assertEquals(expectedPrice.getBrandId(), result.getBrandId(), "brandId mapeado incorrectamente"),
@@ -55,11 +55,11 @@ class PriceServiceTest {
 
     @Test
     public void testGetPriceNotFound() {
-        LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
+        final LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
         when(priceRepositoryPort.findApplicablePrices(1L, 35455L, applicationDate))
                 .thenReturn(null);
 
-        Price result = priceService.getPrice(applicationDate, 35455L, 1L);
+        final Price result = priceService.getPrice(applicationDate, 35455L, 1L);
         assertNull(result, "El resultado debe ser nulo cuando no se encuentra ninguna entidad");
     }
 }

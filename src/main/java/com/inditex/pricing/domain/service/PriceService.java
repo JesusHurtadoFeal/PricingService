@@ -10,12 +10,14 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class PriceService implements PriceUseCase {
+class PriceService implements PriceUseCase {
 
     private final PriceRepositoryPort priceRepositoryPort;
 
     @Override
-    public Price getPrice(LocalDateTime applicationDate, Long productId, Long brandId) {
+    public Price getPrice(final LocalDateTime applicationDate,
+                          final Long productId,
+                          final Long brandId) {
         return priceRepositoryPort.findApplicablePrices(brandId, productId, applicationDate);
     }
 }

@@ -11,7 +11,7 @@ import com.inditex.pricing.adapter.out.entity.PriceEntity;
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
 
     @Query("SELECT p FROM Price p WHERE p.brandId = :brandId AND p.productId = :productId AND :applicationDate BETWEEN p.startDate AND p.endDate ORDER BY p.priority DESC")
-    List<PriceEntity> findApplicablePrices(@Param("brandId") Long brandId,
-                                           @Param("productId") Long productId,
-                                           @Param("applicationDate") LocalDateTime applicationDate);
+    List<PriceEntity> findApplicablePrices(@Param("brandId") final Long brandId,
+                                           @Param("productId") final Long productId,
+                                           @Param("applicationDate") final LocalDateTime applicationDate);
 }

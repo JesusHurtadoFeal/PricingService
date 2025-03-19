@@ -9,5 +9,5 @@ import org.mapstruct.Mapping;
 public interface PriceMapper {
     @Mapping(source = "priceList", target = "priceOrder")
     @Mapping(source = "curr", target = "currency")
-    Price toPrice(PriceEntity priceEntity);
+    Price toPrice(final PriceEntity priceEntity);
 }

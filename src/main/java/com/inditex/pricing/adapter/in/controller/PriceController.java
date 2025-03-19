@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class PriceController {
+class PriceController {
 
     private final PriceUseCase priceUseCase;
 
@@ -36,17 +36,17 @@ public class PriceController {
     public ResponseEntity<PriceResponse> getPrice(
             @Parameter(description = "Application date in ISO format (yyyy-MM-dd'T'HH:mm:ss)")
             @RequestParam("applicationDate")
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime applicationDate,
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) final LocalDateTime applicationDate,
             @Parameter(description = "Product ID")
-            @RequestParam("productId") Long productId,
+            @RequestParam("productId") final Long productId,
             @Parameter(description = "Brand ID")
-            @RequestParam("brandId") Long brandId) {
+            @RequestParam("brandId") final Long brandId) {
 
-        Price price = priceUseCase.getPrice(applicationDate, productId, brandId);
+        final Price price = priceUseCase.getPrice(applicationDate, productId, brandId);
         if (price == null) {
             return ResponseEntity.notFound().build();
         }
-        PriceResponse response = Mappers.getMapper(PriceDTOMapper.class).toPriceResponse(price);
+        final PriceResponse response = Mappers.getMapper(PriceDTOMapper.class).toPriceResponse(price);
         return ResponseEntity.ok(response);
     }
 }

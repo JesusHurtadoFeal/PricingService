@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
-public class PriceAdapter implements PriceRepositoryPort {
+class PriceAdapter implements PriceRepositoryPort {
     private final PriceRepository priceRepository;
 
     @Override

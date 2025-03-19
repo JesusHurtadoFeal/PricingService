@@ -31,8 +31,8 @@ class PriceAdapterTest {
 
     @Test
     public void testFindApplicablePrices_whenEntityExists_thenReturnsMappedPrice() {
-        LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
-        PriceEntity priceEntity = PriceEntity.builder()
+        final LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
+        final PriceEntity priceEntity = PriceEntity.builder()
                 .brandId(1L)
                 .productId(35455L)
                 .priceList(1)
@@ -42,12 +42,12 @@ class PriceAdapterTest {
                 .priority(1)
                 .curr("EUR")
                 .build();
-        List<PriceEntity> priceEntityList = Collections.singletonList(priceEntity);
+        final List<PriceEntity> priceEntityList = Collections.singletonList(priceEntity);
 
         when(priceRepository.findApplicablePrices(1L, 35455L, applicationDate))
                 .thenReturn(priceEntityList);
 
-        Price result = priceAdapter.findApplicablePrices(1L, 35455L, applicationDate);
+        final Price result = priceAdapter.findApplicablePrices(1L, 35455L, applicationDate);
 
         assertNotNull(result, "El resultado no debe ser nulo cuando existe una entidad");
         assertAll("Mapping PriceEntity to Price",
@@ -63,11 +63,11 @@ class PriceAdapterTest {
 
     @Test
     public void testFindApplicablePrices_whenNoEntityExists_thenReturnsNull() {
-        LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
+        final LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
         when(priceRepository.findApplicablePrices(1L, 35455L, applicationDate))
                 .thenReturn(Collections.emptyList());
 
-        Price result = priceAdapter.findApplicablePrices(1L, 35455L, applicationDate);
+        final Price result = priceAdapter.findApplicablePrices(1L, 35455L, applicationDate);
         assertNull(result, "El resultado debe ser nulo cuando no se encuentra ninguna entidad");
     }
 }
